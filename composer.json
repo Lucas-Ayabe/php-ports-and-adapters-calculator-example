@@ -1,0 +1,17 @@
+{
+    "name": "lucas/ports-and-adapters-calc",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas-Ayabe",
+            "email": "lucas.ayabe@gmail.com"
+        }
+    ],
+    "require": {}
+}
