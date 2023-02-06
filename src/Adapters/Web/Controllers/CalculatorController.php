@@ -2,22 +2,14 @@
 
 namespace App\Adapters\Web\Controllers;
 
+use App\Adapters\Web\Models\Calculator;
 use App\Adapters\Web\Views\View;
-use App\Core\UseCases\ConcatRequest;
-use App\Core\UseCases\Divide;
-use App\Core\UseCases\DivideRequest;
-use App\Core\UseCases\Subtract;
-use App\Core\UseCases\Sum;
-use App\Core\UseCases\Multiply;
 
 class CalculatorController
 {
     public function __construct(
         private View $view,
-        private Sum $sum,
-        private Subtract $subtract,
-        private Multiply $multiply,
-        private Divide $divide,
+        private Calculator $model
     ) {
     }
 
@@ -31,10 +23,10 @@ class CalculatorController
 
         if ($first_value && $second_value) {
             $data['result'] = match ($operation) {
-                '+' => $this->sum->execute(new ConcatRequest($first_value, $second_value)),
-                '*' => $this->multiply->execute(new ConcatRequest($first_value, $second_value)),
-                '-' => $this->subtract->execute(new ConcatRequest($first_value, $second_value)),
-                '/' => $this->divide->execute(new DivideRequest($first_value, $second_value)),
+                '+' => $this->model->sum($first_value, $second_value),
+                '-' => $this->model->subtract($first_value, $second_value),
+                '*' => $this->model->multiply($first_value, $second_value),
+                '/' => $this->model->divide($first_value, $second_value)
             };
         }
 
